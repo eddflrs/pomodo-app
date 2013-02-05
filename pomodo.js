@@ -1,5 +1,5 @@
-var START_MINS = 25;
-var START_SECS = 0;
+var START_MINS = 0;
+var START_SECS = 10;
 
 var mins = START_MINS;
 var secs = START_SECS;
@@ -10,7 +10,6 @@ $(function() {
 	$("#resetBtn").on("click", resetTimer);
 	repaintTimer();	
 	jQuery("#timer").fitText(0.3);
-
 });
 
 var toggle = true;
@@ -34,17 +33,13 @@ var startTimer = function() {
 			secs = 59;
 			mins -= 1;
 			if (mins === -1) {
-				mins = 0;
-				secs = 0;
-				stopTimer();
+				expire();
 			}
 		}
-
 		repaintTimer();
 
 	}, 1000);
 };
-
 
 var repaintTimer = function() {
 	$("#seconds").text(toDoubleDigit(secs));
@@ -68,4 +63,19 @@ var resetTimer = function() {
 
 var toDoubleDigit = function(num) {
 	return (num < 10 && num > -10) ? "0"+num : num;
+}
+
+var expire = function() {
+	mins = 0;
+	secs = 0;
+	stopTimer();
+	playSound();
+}
+
+var sound = new Howl({
+	urls: ['bells.mp3']
+});
+
+var playSound = function() {
+	sound.play();
 }
