@@ -1,0 +1,11 @@
+{
+	"name": "Pomodo",
+	"description": "A pomodoro app for Chrome",
+	"version": "1.0",
+	"app": {
+		"background": {
+			"scripts": ["background.js"]
+		}
+	},
+	"icons": {"16": "pomodo-16.png", "128":"pomodo-128.png"}
+}

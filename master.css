@@ -1,0 +1,16 @@
+html, body {
+	background: #F2F2F2;
+	color: #333333;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+}
+
+#container {
+	width: 85%;
+	margin: auto;
+}
+
+#timer {
+	margin: 0 auto;
+	text-align: center;
+}
