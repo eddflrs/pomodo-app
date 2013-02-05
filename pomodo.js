@@ -1,8 +1,11 @@
-var START_MINS = 0;
-var START_SECS = 10;
+var WORK_MINS = 25;
+var WORK_SECS = 0;
 
-var mins = START_MINS;
-var secs = START_SECS;
+var REST_MINS = 5;
+var REST_SECS = 0;
+
+var mins = WORK_MINS;
+var secs = WORK_SECS;
 var timerHandle;
 
 $(function() {
@@ -51,8 +54,8 @@ var stopTimer = function() {
 };
 
 var resetTimer = function() {
-	mins = START_MINS;
-	secs = START_SECS;
+	mins = WORK_MINS;
+	secs = WORK_SECS;
 	clearInterval(timerHandle);
 	repaintTimer();
 	if (toggle === false) {
@@ -63,14 +66,15 @@ var resetTimer = function() {
 
 var toDoubleDigit = function(num) {
 	return (num < 10 && num > -10) ? "0"+num : num;
-}
+};
 
 var expire = function() {
 	mins = 0;
 	secs = 0;
 	stopTimer();
 	playSound();
-}
+	notify();
+};
 
 var sound = new Howl({
 	urls: ['bells.mp3']
@@ -78,4 +82,17 @@ var sound = new Howl({
 
 var playSound = function() {
 	sound.play();
-}
+};
+
+var notify = function() {
+	var notification = webkitNotifications.createNotification(
+		'pomodo-128.png',
+		'Time expired',
+		'Click to start your break.'
+	);
+	notification.onclick = function() {
+		sound.stop();
+		notification.close();
+	};
+	notification.show();
+};

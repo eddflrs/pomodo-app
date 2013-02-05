@@ -1,11 +1,13 @@
 {
 	"name": "Pomodo",
 	"description": "A pomodoro app for Chrome",
-	"version": "1.0",
+	"version": "0.1",
 	"app": {
 		"background": {
 			"scripts": ["background.js"]
 		}
 	},
+	"permissions": ["notifications"],
+	// "web_accessible_resources": ["pomodo-16.png", "pomodo-128.png"],
 	"icons": {"16": "pomodo-16.png", "128":"pomodo-128.png"}
 }
